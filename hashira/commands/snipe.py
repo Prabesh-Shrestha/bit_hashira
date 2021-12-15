@@ -1,8 +1,11 @@
 import lightbulb
 import hikari
+
+
 snipe_plug = lightbulb.Plugin("snipe")
 
 deleted_message = [] 
+edited_message = []
 
 
 @snipe_plug.listener(hikari.MessageDeleteEvent)
@@ -16,6 +19,27 @@ async def on_message_delete(message: hikari.MessageDeleteEvent):
         'message': message.old_message.content,
     }
     deleted_message.append(message_deleted)
+    if len(deleted_message) > 10:
+        deleted_message.pop(0)
+
+
+@snipe_plug.listener(hikari.MessageUpdateEvent)
+async def on_message_delete(message: hikari.MessageUpdateEvent):
+    if message.is_bot:
+        return
+
+    global edited_message 
+
+    edited_message_dict = {
+        'id': message.channel_id,
+        'author': message.author,
+        'mes_old': message.old_message.content,
+        'mes_new': message.content,
+    }
+
+    edited_message.append(edited_message_dict)
+    if len(edited_message) > 10:
+        edited_message.pop(0)
 
 
 @snipe_plug.command()
@@ -24,7 +48,40 @@ async def on_message_delete(message: hikari.MessageDeleteEvent):
 async def snipe(ctx: lightbulb.Context):
     for i in deleted_message:
         if i['id'] == ctx.channel_id:
-            await ctx.respond(f"{i['author']}:{i['message']}")
+            embed = hikari.Embed()
+            embed.add_field(name = 'lol remember this ? \n', value=f'{i["author"]}: {i["message"]}')
+            embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
+            await ctx.respond(embed=embed)     
+
+
+@snipe_plug.command()
+@lightbulb.command('snipelist', 'shows the latest deleted message')
+@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+async def snipe(ctx: lightbulb.Context):
+    mes = ''
+    for i in deleted_message:
+        if i['id'] == ctx.channel_id:
+            mes += f'{i["author"]}: {i["message"]}\n'
+    
+        embed = hikari.Embed()
+        embed.add_field(name = 'lol remember this ? \n', value=mes)
+        embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
+        await ctx.respond(embed=embed)     
+
+
+
+@snipe_plug.command()
+@lightbulb.command('edit', 'shows the latest edited message')
+@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+async def edit(ctx: lightbulb.Context):
+    for i in edited_message:
+        if i['id'] == ctx.channel_id:
+            embed = hikari.Embed(title='Edit')
+            embed.add_field(name = 'before', value=f'{i["author"]}: {i["mes_old"]}')
+            embed.add_field(name = 'after', value=f'{i["author"]}: {i["mes_new"]}')
+            embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
+            await ctx.respond(embed=embed)     
+
 
 
 def load(bot):

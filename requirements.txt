@@ -1,0 +1,15 @@
+aiohttp==3.8.1
+aiosignal==1.2.0
+async-timeout==4.0.1
+attrs==21.2.0
+charset-normalizer==2.0.9
+colorlog==6.6.0
+frozenlist==1.2.0
+hikari==2.0.0.dev104
+hikari-lightbulb==2.1.0
+idna==3.3
+multidict==5.2.0
+pure25519==0.0.1
+typing_extensions==4.0.1
+uvloop==0.16.0
+yarl==1.7.2

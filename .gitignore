@@ -1,1 +1,3 @@
 env/
+hashira/__pycache__/
+hashira/commands/__pycache__
