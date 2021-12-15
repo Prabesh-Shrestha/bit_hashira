@@ -42,6 +42,17 @@ async def quote(ctx: lightbulb.Context):
     embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
     await ctx.respond(embed=embed)
 
+@core.command()
+@lightbulb.option("message",'message', str)
+@lightbulb.command('say', 'order the bot to say something')
+@lightbulb.implements(lightbulb.PrefixCommand)
+async def say(ctx: lightbulb.Context):
+    await ctx.respond(ctx.options.message)
+    # await ctx.respond()
+
+
+
+
 
 def load(bot):
     bot.add_plugin(core)

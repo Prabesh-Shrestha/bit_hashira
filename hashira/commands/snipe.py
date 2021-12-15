@@ -4,6 +4,7 @@ snipe_plug = lightbulb.Plugin("snipe")
 
 deleted_message = [] 
 
+
 @snipe_plug.listener(hikari.MessageDeleteEvent)
 async def on_message_delete(message: hikari.MessageDeleteEvent):
     if message.old_message.author.is_bot:
