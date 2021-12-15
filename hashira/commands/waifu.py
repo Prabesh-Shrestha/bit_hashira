@@ -1,7 +1,7 @@
 import requests
 import lightbulb
 
-text_plug= lightbulb.Plugin("texts")
+waifu= lightbulb.Plugin("waifu")
 
 
 
@@ -16,7 +16,7 @@ def getwaifu(type, catagory):
         return waifupic
 
 
-@text_plug.command()
+@waifu.command()
 @lightbulb.option("catagory",'catagory', str)
 @lightbulb.command("waifu", "shows waifu")
 @lightbulb.implements(lightbulb.SlashCommand)
@@ -29,8 +29,8 @@ async def ping(ctx: lightbulb.Context) -> None:
 
 
 def load(bot):
-    bot.add_plugin(text_plug)
+    bot.add_plugin(waifu)
 
 def unload(bot):
-    bot.remove_plugin(text_plug)
+    bot.remove_plugin(waifu)
 
