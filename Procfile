@@ -1,1 +1,1 @@
-worker: python -m hashira 
+worker: run.sh
