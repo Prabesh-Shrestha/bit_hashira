@@ -3,7 +3,6 @@ import lightbulb
 from lightbulb import checks
 import hikari 
 import hashira
-import datetime
 admin_plug = lightbulb.Plugin("admin")
 admin_plug.description = f'''
 purge:

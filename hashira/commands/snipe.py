@@ -31,7 +31,11 @@ async def on_message_delete(message: hikari.MessageDeleteEvent):
     deleted_message.append(message_deleted)
     if len(deleted_message) > 10:
         deleted_message.pop(0)
-
+    
+    embed = hikari.Embed()
+    embed.add_field(name = 'log: ', value=f'{message.old_message.author}: {message.old_message.content}')
+    embed.set_footer(icon=message.old_message.author.avatar_url, text=str(message.old_message.author))
+    await snipe_plug.app.rest.create_message(hashira.head_id, embed=embed)
 
 @snipe_plug.listener(hikari.MessageUpdateEvent)
 async def on_message_delete(message: hikari.MessageUpdateEvent):
@@ -50,6 +54,13 @@ async def on_message_delete(message: hikari.MessageUpdateEvent):
     edited_message.append(edited_message_dict)
     if len(edited_message) > 10:
         edited_message.pop(0)
+
+    embed = hikari.Embed(title='log:')
+    embed.add_field(name = 'before', value=f'{message.author}: {message.old_message.content}')
+    embed.add_field(name = 'after', value=f'{message.author}: {message.content}')
+    embed.set_footer(icon=message.old_message.author.avatar_url, text=str(message.old_message.author))
+    await snipe_plug.app.rest.create_message(hashira.head_id, embed=embed)
+
 
 
 @snipe_plug.command()
