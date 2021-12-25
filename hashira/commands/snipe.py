@@ -1,9 +1,18 @@
 import lightbulb
 import hikari
-
+import hashira
 
 snipe_plug = lightbulb.Plugin("snipes")
 snipe_plug.description = f'''
+snipe:
+snipes the last deleted message
+{hashira.prefix}snipe
+snipelist: 
+lists all the snipes
+{hashira.prefix}snipelist
+edit: 
+snipes the last edited message
+{hashira.prefix}edit
 '''
 deleted_message = [] 
 edited_message = []
