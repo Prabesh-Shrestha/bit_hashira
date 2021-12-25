@@ -2,6 +2,7 @@ from hikari.permissions import Permissions
 import lightbulb
 from lightbulb import checks
 import hashira
+import datetime
 admin_plug = lightbulb.Plugin("admin")
 admin_plug.description = f'''
 
@@ -19,14 +20,16 @@ async def shut(ctx: lightbulb.Context):
     else:
         await ctx.respond('u are not my boss lmao xD')
 
-# @checks.bot_has_guild_permissions(Permissions.MANAGE_MESSAGES)
-# @admin_plug.command()
-# @lightbulb.command("clear", "deletes the chat")
-# @lightbulb.option("limit",'limit', int)
-# @lightbulb.implements(lightbulb.PrefixCommand,lightbulb.SlashCommand)
-# async def shut(ctx: lightbulb.Context):
-#     pass
-# purge 
+@checks.bot_has_guild_permissions(Permissions.MANAGE_MESSAGES)
+@admin_plug.command
+@lightbulb.option("messages", "The number of messages to purge.", type=int, required=True)
+@lightbulb.command("purge", "Purge messages within the last hour.")
+@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+async def userinfo(ctx: lightbulb.Context) -> None:
+    num_msgs = ctx.options.messages
+    channel = ctx.get_channel()
+    messages = list(await channel.fetch_history().limit(num_msgs+ 1))
+    await ctx.app.rest.delete_messages(channel, messages)
 # ban 
 # kick
 
