@@ -1,10 +1,10 @@
 import lightbulb
 import hikari
 class YourHelpCommand(lightbulb.BaseHelpCommand):
-    async def send_bot_help(self, ctx: lightbulb.CommandContext):
+    async def send_bot_help(self, ctx):
         embed = hikari.Embed(title='Need help ??')
         embed.add_field(name='prefix', value='`>`')
-        embed.add_field(name='commands: ', value=ctx.bot)
+        embed.add_field(name='commands: ', value=str(list(ctx.bot.plugins.keys())))
         embed.add_field(name='report: ', value='Prabesh#1395')
         embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
         await ctx.respond(embed=embed)
