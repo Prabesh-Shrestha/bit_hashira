@@ -2,7 +2,7 @@ import lightbulb
 import hikari
 
 
-snipe_plug = lightbulb.Plugin("snipe")
+snipe_plug = lightbulb.Plugin("snipes")
 snipe_plug.description = f'''
 '''
 deleted_message = [] 
@@ -53,6 +53,7 @@ async def snipe(ctx: lightbulb.Context):
             embed.add_field(name = 'lol remember this ? \n', value=f'{i["author"]}: {i["message"]}')
             embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
             await ctx.respond(embed=embed)     
+            break
 
 
 @snipe_plug.command()
