@@ -1,6 +1,7 @@
 from hikari.permissions import Permissions
 import lightbulb
 from lightbulb import checks
+import hikari 
 import hashira
 import datetime
 admin_plug = lightbulb.Plugin("admin")
@@ -45,7 +46,7 @@ async def purge_channel(ctx: lightbulb.Context) -> None:
 
 @checks.bot_has_guild_permissions(Permissions.BAN_MEMBERS)
 @admin_plug.command
-@lightbulb.option("member", "member", type=lightbulb.Member, required=True)
+@lightbulb.option("member", "member", type=hikari.Member, required=True)
 @lightbulb.option("reason", "reason", type=str, required=True)
 @lightbulb.command("ban", "bans the member")
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
@@ -55,7 +56,7 @@ async def ban_usr(ctx: lightbulb.Context) -> None:
 
 @checks.bot_has_guild_permissions(Permissions.BAN_MEMBERS)
 @admin_plug.command
-@lightbulb.option("member", "member", type=lightbulb.Member, required=True)
+@lightbulb.option("member", "member", type=hikari.Member, required=True)
 @lightbulb.option("reason", "reason", type=str, required=True)
 @lightbulb.command("unban", "unbans the member")
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
@@ -67,7 +68,7 @@ async def unban_usr(ctx: lightbulb.Context) -> None:
 
 @checks.bot_has_guild_permissions(Permissions.KICK_MEMBERS)
 @admin_plug.command
-@lightbulb.option("member", "member", type=lightbulb.Member, required=True)
+@lightbulb.option("member", "member", type=hikari.Member, required=True)
 @lightbulb.option("reason", "reason", type=str, required=True)
 @lightbulb.command("kick", "kicks the member")
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
