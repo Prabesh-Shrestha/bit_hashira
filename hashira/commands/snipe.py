@@ -3,7 +3,8 @@ import hikari
 
 
 snipe_plug = lightbulb.Plugin("snipe")
-
+snipe_plug.description = f'''
+'''
 deleted_message = [] 
 edited_message = []
 

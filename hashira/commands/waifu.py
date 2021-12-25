@@ -1,8 +1,15 @@
 import requests
 import lightbulb
-
-waifuplug= lightbulb.Plugin("waifu")
-
+import hashira
+waifu_plug= lightbulb.Plugin("waifus")
+waifu_plug.description= f'''
+SFW:
+waifu, neko, shinobu, megumin, bully, cuddle, cry, hug, awoo, kiss, lick, pat, smug, bonk, yeet, blush, smile, wave, highfive, handhold, nom, bite, glomp, slap, kill, kick, happy, wink, poke, dance, cringe
+NSFW:
+waifu, neko, trap, blowjob
+example: 
+`{hashira.prefix}waifu shinobu`
+'''
 
 
 def getwaifu(type, catagory):
@@ -16,21 +23,22 @@ def getwaifu(type, catagory):
         return waifupic
 
 
-@waifuplug.command()
+@waifu_plug.command()
 @lightbulb.option("catagory",'catagory', str)
 @lightbulb.command("waifu", "shows waifu")
-@lightbulb.implements(lightbulb.SlashCommand)
+@lightbulb.implements(lightbulb.PrefixCommand,lightbulb.SlashCommand)
 async def ping(ctx: lightbulb.Context) -> None:
-    if not(ctx.get_channel().is_nsfw()):
-        await ctx.respond(getwaifu('sfw', str(ctx.options.catagory)))
-    else:
-        await ctx.respond(getwaifu('nsfw', str(ctx.options.catagory)))
+    try:
+        if ctx.get_channel().is_nsfw():
+            await ctx.respond(getwaifu('nsfw', str(ctx.options.catagory)))
+    except:
+            await ctx.respond(getwaifu('sfw', str(ctx.options.catagory)))
 
 
 
 def load(bot):
-    bot.add_plugin(waifuplug)
+    bot.add_plugin(waifu_plug)
 
 def unload(bot):
-    bot.remove_plugin(waifuplug)
+    bot.remove_plugin(waifu_plug)
 

@@ -13,6 +13,11 @@ import hikari
 import requests
 core = lightbulb.Plugin("core")
 
+core.description = f'''
+
+
+
+'''
 def GetQuote():
     response = requests.get("https://zenquotes.io/api/random")
     jsondata = json.loads(response.text)
