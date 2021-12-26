@@ -7,7 +7,6 @@ import json
 import lightbulb
 import hikari
 import requests
-from pyston import PystonClient
 core = lightbulb.Plugin("core")
 
 core.description = f'''
