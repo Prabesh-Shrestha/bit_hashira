@@ -1,16 +1,13 @@
-# meaning 
-# av [done]
 # math
 # rate
 # run
-# quote [done]
-# say 
 
 
 import json
 import lightbulb
 import hikari
 import requests
+from pyston import PystonClient
 core = lightbulb.Plugin("core")
 
 core.description = f'''
@@ -50,10 +47,93 @@ async def quote(ctx: lightbulb.Context):
 @core.command()
 @lightbulb.option("message",'message', str)
 @lightbulb.command('say', 'order the bot to say something')
-@lightbulb.implements(lightbulb.PrefixCommand)
+@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
 async def say(ctx: lightbulb.Context):
     await ctx.respond(ctx.options.message)
-    # await ctx.respond()
+
+
+
+@core.command()
+@lightbulb.option("word",'word', str)
+@lightbulb.command('meaning', 'searchs the meaning of a word')
+@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+async def meaning(ctx: lightbulb.Context):
+    word = ctx.options.word
+    response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word}")
+    res = response.json()
+    try:
+        origin = res[0]["origin"]
+    except:
+        origin = "no origin found"
+    try:
+        example = res[0]["meanings"][0]["definitions"][0]["example"]
+    except:
+        example = "no examples"
+    try:
+        speech = res[0]["meanings"][0]["partOfSpeech"]
+    except:
+        speech = "no speech"
+    des = f"""
+    Word: {res[0]["word"]}
+    Phonetic: {res[0]["phonetic"]}
+    Origin: {origin}
+    Part of speach: {speech}
+    Definition:{res[0]["meanings"][0]["definitions"][0]["definition"]}
+    Example: {example}"""
+    embed = hikari.Embed(title=f"Meaning of {word}")
+    embed.add_field(name = 'Description: \n', value=des)
+    embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
+    await ctx.respond(embed=embed)
+
+
+
+@core.command()
+@lightbulb.option("expression",'expression', str)
+@lightbulb.command('eval', 'solves simple math expression')
+@lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+async def solve(ctx: lightbulb.Context):
+    await ctx.respond(eval(ctx.options.expression))
+    # fix 
+
+
+
+# @core.command()
+# @lightbulb.option("code",'code', modifier=lightbulb.OptionModifier.GREEDY)
+# @lightbulb.command('run', 'runs a code')
+# @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
+# async def solve(ctx: lightbulb.Context):
+#     if ctx.interaction is None: 
+#         expression = '\n'.join(ctx.options.code)
+#         lang = expression.split("\n")[0][3:]
+#         code = expression.split("\n", 1)[-1][:-3]
+#         print(lang)
+#         print(code)
+#         client = PystonClient()
+#         output = await client.execute(lang, code)
+#         embed = hikari.Embed()
+#         embed.add_field(name="Result", value=output)
+#         embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+#         await ctx.respond(embed=embed)
+
+
+#     else: 
+#         pass
+    # lang = code.split("\n")[0][3:]
+    # code = code.split("\n", 1)[-1][:-3]
+    # client = PystonClient()
+    # output = await client.execute(lang, code)
+    # embed = hikari.Embed()
+    # embed.add_field(name="Result", value=output)
+    # embed.set_footer(icon_url=ctx.author.avatar_url, text=f"Requested by {ctx.author.name}")
+    # await ctx.respond(embed=embed)
+
+ 
+
+
+
+
+
+
 
 
 

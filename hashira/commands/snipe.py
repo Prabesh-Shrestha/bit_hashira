@@ -85,10 +85,10 @@ async def snipe(ctx: lightbulb.Context):
         if i['id'] == ctx.channel_id:
             mes += f'{i["author"]}: {i["message"]}\n'
     
-        embed = hikari.Embed()
-        embed.add_field(name = 'lol remember this ? \n', value=mes)
-        embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
-        await ctx.respond(embed=embed)     
+    embed = hikari.Embed()
+    embed.add_field(name = 'lol remember this ? \n', value=mes)
+    embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
+    await ctx.respond(embed=embed)     
 
 
 
