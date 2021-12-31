@@ -29,7 +29,7 @@ def getwaifu(type, catagory):
 @lightbulb.implements(lightbulb.PrefixCommand,lightbulb.SlashCommand)
 async def ping(ctx: lightbulb.Context) -> None:
     try:
-        if ctx.get_channel().is_nsfw():
+        if ctx.get_channel().is_nsfw:
             await ctx.respond(getwaifu('nsfw', str(ctx.options.catagory)))
     except:
             await ctx.respond(getwaifu('sfw', str(ctx.options.catagory)))
