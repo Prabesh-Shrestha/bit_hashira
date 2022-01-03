@@ -32,7 +32,7 @@ async def ping(ctx: lightbulb.Context) -> None:
         await ctx.respond(getwaifu('nsfw', str(ctx.options.catagory)))
     else:
         await ctx.respond(getwaifu('sfw', str(ctx.options.catagory)))
-
+    # await ctx.respond(getwaifu('nsfw', str(ctx.options.catagory)))
 
 
 def load(bot):
