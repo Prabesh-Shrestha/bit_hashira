@@ -32,7 +32,7 @@ async def shut(ctx: lightbulb.Context):
         await ctx.respond('u are not my boss lmao xD')
 
 @admin_plug.command()
-@checks.bot_has_guild_permissions(Permissions.MANAGE_MESSAGES)
+@lightbulb.add_checks(lightbulb.has_guild_permissions(hikari.Permissions.MANAGE_MESSAGES))
 @lightbulb.option("messages", "The number of messages to purge.", type=int, required=True)
 @lightbulb.command("purge", "Purge messages within the last hour.")
 @lightbulb.implements(lightbulb.PrefixCommand, lightbulb.SlashCommand)
@@ -44,7 +44,8 @@ async def purge_channel(ctx: lightbulb.Context) -> None:
 
 
 @admin_plug.command()
-@checks.bot_has_guild_permissions(Permissions.BAN_MEMBERS)
+@lightbulb.add_checks(lightbulb.has_guild_permissions(hikari.Permissions.BAN_MEMBERS))
+# @checks.bot_has_guild_permissions(Permissions.BAN_MEMBERS)
 @lightbulb.option("member", "member", type=hikari.Member, required=True)
 @lightbulb.option("reason", "reason", type=str, required=True)
 @lightbulb.command("ban", "bans the member")
@@ -54,7 +55,8 @@ async def ban_usr(ctx: lightbulb.Context) -> None:
     await ctx.respond(f"{ctx.options.member.mention} has been banned")
 
 @admin_plug.command()
-@checks.bot_has_guild_permissions(Permissions.BAN_MEMBERS)
+# @checks.bot_has_guild_permissions(Permissions.BAN_MEMBERS)
+@lightbulb.add_checks(lightbulb.has_guild_permissions(hikari.Permissions.BAN_MEMBERS))
 @lightbulb.option("member", "member", type=hikari.Member, required=True)
 @lightbulb.option("reason", "reason", type=str, required=True)
 @lightbulb.command("unban", "unbans the member")
@@ -66,7 +68,7 @@ async def unban_usr(ctx: lightbulb.Context) -> None:
 
 
 @admin_plug.command()
-@checks.bot_has_guild_permissions(Permissions.KICK_MEMBERS)
+@lightbulb.add_checks(lightbulb.has_guild_permissions(hikari.Permissions.KICK_MEMBERS))
 @lightbulb.option("member", "member", type=hikari.Member, required=True)
 @lightbulb.option("reason", "reason", type=str, required=True)
 @lightbulb.command("kick", "kicks the member")
