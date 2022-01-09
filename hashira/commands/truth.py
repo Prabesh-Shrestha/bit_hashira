@@ -28,20 +28,27 @@ turth_question = [
     'would you date ur bff? (male/female)',
     'would you like to slap someone who you dont know for absolute no reason :joy: ?',
     'would you kill someone that u love the most to protect someone u love more',
-    'would you have a one night stand with a hiv infected person even if they are hot'
+    'would you have a one night stand with a hiv infected person even if they are hot',
+    'have you ever masterbated sniffing someone\'s underwear?',
+    'how many males or females teacher have you had crush on ? *uwu*',
+    'what is 3+3',
+    'Why did your last relationship break down?',
+    'Have you ever peed in the shower?',
+    'What\'s your worst habit?',
+    'how many children have you washed down the drain?',
 ]
 
 dare_question = [
     'try to eat a banana with your foot', 
     'ask your crush out', 
     'chew a chewing gum and put it inside ur nose'
+    'suck your toes',
+    'go to `https://www.twitch.tv/shishir3d` and `https://www.twitch.tv/idi0city` and sub to them',
+    'give your bff, a spoiler to of a movie they havnt watched, but are planing to',
+    'let your friend use a social media account to post something embrassing that you are famous on (>50 followers)',
+    'watch sasbahu series(indian) on loop on 10x speed'
 ]
-
-
-
 session = []
-
-
 
 @truth_plug.command()
 @lightbulb.command("register", "register's the user")
