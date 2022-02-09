@@ -1,4 +1,4 @@
-prefix = '?'
+prefix = 'h!'
 guild_id = 871763427218055229
 log_id = 871948284724404235
 INV_LINK = 'https://discord.com/api/oauth2/authorize?client_id=839831448600182844&permissions=8&scope=bot%20applications.commands'

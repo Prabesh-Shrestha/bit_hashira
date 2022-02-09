@@ -1,3 +1,4 @@
+from hikari.messages import Attachment
 import lightbulb
 import hikari 
 import hashira
@@ -22,6 +23,16 @@ async def pp_size(ctx: lightbulb.Context):
     embed.set_footer(icon=member.avatar_url, text=str(member))
     await ctx.respond(embed=embed)
 
+@fun_plug.command()
+@lightbulb.option("member", "member", type=hikari.Member)
+@lightbulb.command("kill", "kills the user")
+@lightbulb.implements(lightbulb.PrefixCommand,lightbulb.SlashCommand)
+async def pp_size(ctx: lightbulb.Context):
+    embed = hikari.Embed(title=f"{ctx.author.username} killed {ctx.options.member}")
+    embed.set_image('https://tenor.com/view/anime-gif-19109520')
+    
+    embed.set_footer(icon=ctx.author.avatar_url, text=str(ctx.author))
+    await ctx.respond(embed=embed)
 
 def load(bot):
     bot.add_plugin(fun_plug)

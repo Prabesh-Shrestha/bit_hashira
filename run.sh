@@ -1,3 +1,7 @@
 pip install -r requirements.txt
 pip install requests 
-python -m hashira
+
+
+
+# java -jar music_server/Lavalink.jar & 
+python -m hashira 
