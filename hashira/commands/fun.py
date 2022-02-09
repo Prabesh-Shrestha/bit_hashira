@@ -29,7 +29,7 @@ async def pp_size(ctx: lightbulb.Context):
 @lightbulb.implements(lightbulb.PrefixCommand,lightbulb.SlashCommand)
 async def pp_size(ctx: lightbulb.Context):
     embed = hikari.Embed(title=f"{ctx.author.username} killed {ctx.options.member}")
-    embed.set_image('https://tenor.com/view/anime-gif-19109520')
+    embed.set_image('https://c.tenor.com/d5635JXKyAAAAAAC/shoot-kill.gif')
     
     embed.set_footer(icon=ctx.author.avatar_url, text=str(ctx.author))
     await ctx.respond(embed=embed)
