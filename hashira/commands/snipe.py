@@ -72,8 +72,8 @@ async def snipe(ctx: lightbulb.Context):
             embed = hikari.Embed()
             embed.add_field(name = 'lol remember this ? \n', value=f'{i["author"]}: {i["message"]}')
             embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
-            await ctx.respond(embed=embed)     
-            break
+
+    await ctx.respond(embed=embed)     
 
 
 @snipe_plug.command()
@@ -84,12 +84,11 @@ async def snipe(ctx: lightbulb.Context):
     for i in deleted_message:
         if i['id'] == ctx.channel_id:
             mes += f'{i["author"]}: {i["message"]}\n'
-    
+
     embed = hikari.Embed()
     embed.add_field(name = 'lol remember this ? \n', value=mes)
     embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
     await ctx.respond(embed=embed)     
-
 
 
 @snipe_plug.command()
@@ -102,7 +101,7 @@ async def edit(ctx: lightbulb.Context):
             embed.add_field(name = 'before', value=f'{i["author"]}: {i["mes_old"]}')
             embed.add_field(name = 'after', value=f'{i["author"]}: {i["mes_new"]}')
             embed.set_footer(icon=ctx.member.avatar_url, text=str(ctx.member))
-            await ctx.respond(embed=embed)     
+    await ctx.respond(embed=embed)     
 
 
 
