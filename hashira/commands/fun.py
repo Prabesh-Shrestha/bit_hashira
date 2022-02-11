@@ -34,6 +34,18 @@ async def pp_size(ctx: lightbulb.Context):
     embed.set_footer(icon=ctx.author.avatar_url, text=str(ctx.author))
     await ctx.respond(embed=embed)
 
+@fun_plug.command()
+@lightbulb.option("member1", "member1", type=hikari.Member)
+@lightbulb.option("member2", "member2", type=hikari.Member)
+@lightbulb.command("ship", "ships two memebers")
+@lightbulb.implements(lightbulb.PrefixCommand,lightbulb.SlashCommand)
+async def ship(ctx: lightbulb.Context):
+    embed = hikari.Embed(title=f"{ctx.options.member1} shipped with {ctx.options.member2}")
+    embed.set_image('https://c.tenor.com/e0O2k0ubPDYAAAAC/ship-otp.gif')
+    embed.set_footer(icon=ctx.author.avatar_url, text=str(ctx.author))
+    await ctx.respond(embed=embed)
+
+
 def load(bot):
     bot.add_plugin(fun_plug)
 
