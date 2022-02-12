@@ -4,4 +4,4 @@ pip install requests
 
 
 # java -jar music_server/Lavalink.jar & 
-python -m hashira 
+python -m hashira launch 

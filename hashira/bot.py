@@ -6,7 +6,7 @@ import hashira
 
 
 bot = lightbulb.BotApp(
-    token=tokens.bot_token,
+    # token=tokens.bot_token,
     prefix=hashira.prefix,
     # default_enabled_guilds = hashira.guild_id
 )
