@@ -8,7 +8,10 @@ import hashira.tokens as tokens
 try:
     if sys.argv[1] == 'launch':
         TOKEN = tokens.bot_token_real
+    else:
+        TOKEN = tokens.bot_token_test
 except:
+    print("using the test bot")
     TOKEN = tokens.bot_token_test
 
 
